@@ -97,7 +97,7 @@
         /* Auth Links Styling */
         .auth-links .nav-link {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
+          -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 600;
             margin: 0 5px;
@@ -153,9 +153,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/shop') }}">Shop</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Deals</a>
-                        </li>
+                      
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/about') }}">About</a>
                         </li>
@@ -204,7 +202,7 @@
                             <!-- User Dropdown -->
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" 
-                                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-pre>
                                     <i class="fas fa-user-circle me-1"></i>{{ Auth::user()->name }}
                                 </a>
 
@@ -245,25 +243,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Add active class to current page
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentLocation = window.location.pathname;
-            const navLinks = document.querySelectorAll('.nav-link');
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentLocation = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href');
             
-            navLinks.forEach(link => {
-                if(link.getAttribute('href') === currentLocation) {
-                    link.classList.add('active');
-                }
-            });
-
-            // Simple cart counter (you can enhance this)
-            const cartBadge = document.querySelector('.cart-badge');
-            if(cartBadge) {
-                // Example: Update cart count from localStorage or API
-                const cartCount = localStorage.getItem('cartCount') || '3';
-                cartBadge.textContent = cartCount;
+            // Check for exact match or if current location starts with link path
+            if (linkPath === currentLocation || 
+                (linkPath !== '/' && currentLocation.startsWith(linkPath))) {
+                // Remove active class from all links first
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                // Add active class to current link
+                link.classList.add('active');
             }
         });
-    </script>
+
+        // Cart counter
+        const cartBadge = document.querySelector('.cart-badge');
+        if(cartBadge) {
+            const cartCount = localStorage.getItem('cartCount') || '0';
+            cartBadge.textContent = cartCount;
+        }
+    });
+</script>
 </body>
 </html>

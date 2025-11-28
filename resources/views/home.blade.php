@@ -1,15 +1,6 @@
 @extends('layouts.app')
-
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopHub - Your Premium Store</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
+<style>
         :root {
             --primary-color: #6366f1;
             --secondary-color: #ec4899;
@@ -283,8 +274,7 @@
             font-weight: 600;
         }
     </style>
-</head>
-<body>
+
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
@@ -317,21 +307,31 @@
     @endauth
 
     <!-- Quick Stats -->
+
+        
+    
+   
+
     <section class="stats-section">
+        
         <div class="container">
             <div class="row g-4">
+               
                 <div class="col-md-3 col-sm-6">
                     <div class="stat-card">
-                        <div class="stat-number">1.5K+</div>
+                        <div class="stat-number">{{ $users->count() }}</div>
                         <div class="stat-label">Happy Customers</div>
                     </div>
                 </div>
+                
+               
                 <div class="col-md-3 col-sm-6">
                     <div class="stat-card">
-                        <div class="stat-number">500+</div>
+                        <div class="stat-number">{{ $products->count() }}</div>
                         <div class="stat-label">Products</div>
                     </div>
                 </div>
+                
                 <div class="col-md-3 col-sm-6">
                     <div class="stat-card">
                         <div class="stat-number">50+</div>
@@ -345,47 +345,29 @@
                     </div>
                 </div>
             </div>
+         
         </div>
     </section>
-
     <!-- Categories -->
     <section class="py-5">
         <div class="container">
             <h2 class="section-title">Shop by Category</h2>
             <div class="row g-4">
-                <div class="col-md-3 col-sm-6">
+                @foreach ( $products as $product )
+               
+                
+                <div class="col-md-3 col-sm-6 col-4">
                     <div class="category-card">
                         <div class="category-content">
                             <i class="fas fa-tshirt category-icon"></i>
-                            <h3 class="category-title">Fashion</h3>
+                            <h3 class="category-title">{{ $product->category }}</h3>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="category-card">
-                        <div class="category-content">
-                            <i class="fas fa-laptop category-icon"></i>
-                            <h3 class="category-title">Electronics</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="category-card">
-                        <div class="category-content">
-                            <i class="fas fa-home category-icon"></i>
-                            <h3 class="category-title">Home & Living</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="category-card">
-                        <div class="category-content">
-                            <i class="fas fa-dumbbell category-icon"></i>
-                            <h3 class="category-title">Sports</h3>
-                        </div>
-                    </div>
-                </div>
+                
+               
             </div>
+            @endforeach
+          
         </div>
     </section>
 
@@ -394,6 +376,8 @@
         <div class="container">
             <h2 class="section-title">Featured Products</h2>
             <div class="row g-4">
+
+                @foreach ( $products as $product )
                 <div class="col-lg-3 col-md-6">
                     <div class="card product-card">
                         <div class="product-image">
@@ -401,7 +385,7 @@
                             <span class="product-badge">New</span>
                         </div>
                         <div class="product-body">
-                            <h5 class="product-title">Wireless Headphones</h5>
+                            <h5 class="product-title">{{ $product->name }}</h5>
                             <div class="product-rating">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -410,74 +394,12 @@
                                 <i class="fas fa-star-half-alt"></i>
                                 <span class="text-muted ms-1">(4.5)</span>
                             </div>
-                            <div class="product-price">$99.99</div>
+                            <div class="product-price">${{ $product->price }}</div>
                             <button class="btn btn-add-cart"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="card product-card">
-                        <div class="product-image">
-                            <i class="fas fa-watch"></i>
-                            <span class="product-badge">Sale</span>
-                        </div>
-                        <div class="product-body">
-                            <h5 class="product-title">Smart Watch Pro</h5>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span class="text-muted ms-1">(5.0)</span>
-                            </div>
-                            <div class="product-price">$199.99</div>
-                            <button class="btn btn-add-cart"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="card product-card">
-                        <div class="product-image">
-                            <i class="fas fa-camera"></i>
-                            <span class="product-badge">Hot</span>
-                        </div>
-                        <div class="product-body">
-                            <h5 class="product-title">Digital Camera 4K</h5>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <span class="text-muted ms-1">(4.0)</span>
-                            </div>
-                            <div class="product-price">$499.99</div>
-                            <button class="btn btn-add-cart"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="card product-card">
-                        <div class="product-image">
-                            <i class="fas fa-gamepad"></i>
-                            <span class="product-badge">New</span>
-                        </div>
-                        <div class="product-body">
-                            <h5 class="product-title">Gaming Console</h5>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span class="text-muted ms-1">(4.7)</span>
-                            </div>
-                            <div class="product-price">$399.99</div>
-                            <button class="btn btn-add-cart"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -534,7 +456,6 @@
         </div>
     </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script>
         // Add to cart animation
         document.querySelectorAll('.btn-add-cart').forEach(btn => {
@@ -561,6 +482,5 @@
             });
         });
     </script>
-</body>
-</html>
+
 @endsection

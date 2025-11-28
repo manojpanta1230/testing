@@ -24,38 +24,17 @@
                         <!-- Categories -->
                         <div class="filter-section mb-4">
                             <h5 class="filter-title mb-3">Categories</h5>
+                            @foreach ($shop_products as $product)
+                                
+                            
                             <div class="form-check mb-2">
                                 <input class="form-check-input" type="checkbox" id="category-fashion" checked>
                                 <label class="form-check-label" for="category-fashion">
-                                    Fashion <span class="text-muted">(248)</span>
+                                    {{ $product->category }}
                                 </label>
                             </div>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="category-electronics">
-                                <label class="form-check-label" for="category-electronics">
-                                    Electronics <span class="text-muted">(156)</span>
-                                </label>
-                            </div>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="category-home">
-                                <label class="form-check-label" for="category-home">
-                                    Home & Living <span class="text-muted">(89)</span>
-                                </label>
-                            </div>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="category-sports">
-                                <label class="form-check-label" for="category-sports">
-                                    Sports <span class="text-muted">(67)</span>
-                                </label>
-                            </div>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="category-books">
-                                <label class="form-check-label" for="category-books">
-                                    Books <span class="text-muted">(134)</span>
-                                </label>
-                            </div>
-                        </div>
-
+                         @endforeach
+                        </div>  
                         <!-- Price Range -->
                         <div class="filter-section mb-4">
                             <h5 class="filter-title mb-3">Price Range</h5>
@@ -194,6 +173,8 @@
                     <!-- Products Grid -->
                     <div class="row g-4">
                         <!-- Product 1 -->
+                        @foreach ($shop_products as $product)
+
                         <div class="col-xl-3 col-lg-4 col-md-6">
                             <div class="card product-card">
                                 <div class="product-image">
@@ -209,7 +190,7 @@
                                     </div>
                                 </div>
                                 <div class="product-body">
-                                    <h5 class="product-title">Wireless Headphones</h5>
+                                    <h5 class="product-title">{{ $product->name }}</h5>
                                     <div class="product-rating">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
@@ -218,228 +199,18 @@
                                         <i class="fas fa-star-half-alt"></i>
                                         <span class="text-muted ms-1">(4.5)</span>
                                     </div>
-                                    <div class="product-price">$99.99 <span class="text-muted text-decoration-line-through">$129.99</span></div>
+                                    <div class="product-price">${{ $product->price }} <span class="text-muted text-decoration-line-through">${{ $product->old_price }}</span></div>
+                                   <div class="d-grid gap-2 mt-3">
                                     <button class="btn btn-add-cart"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
+                                    <a class=" btn btn-view-details" href="{{ route('products.show', $product->id) }}" 
+                                 
+                                   title="View Details">View Details</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Product 2 -->
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="card product-card">
-                                <div class="product-image">
-                                    <i class="fas fa-watch"></i>
-                                    <span class="product-badge sale">Sale</span>
-                                    <div class="product-actions">
-                                        <button class="btn-action wishlist-btn" title="Add to Wishlist">
-                                            <i class="far fa-heart"></i>
-                                        </button>
-                                        <button class="btn-action view-btn" title="Quick View">
-                                            <i class="far fa-eye"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="product-body">
-                                    <h5 class="product-title">Smart Watch Pro</h5>
-                                    <div class="product-rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span class="text-muted ms-1">(5.0)</span>
-                                    </div>
-                                    <div class="product-price">$199.99 <span class="text-muted text-decoration-line-through">$249.99</span></div>
-                                    <button class="btn btn-add-cart"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product 3 -->
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="card product-card">
-                                <div class="product-image">
-                                    <i class="fas fa-laptop"></i>
-                                    <span class="product-badge">Hot</span>
-                                    <div class="product-actions">
-                                        <button class="btn-action wishlist-btn" title="Add to Wishlist">
-                                            <i class="far fa-heart"></i>
-                                        </button>
-                                        <button class="btn-action view-btn" title="Quick View">
-                                            <i class="far fa-eye"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="product-body">
-                                    <h5 class="product-title">Gaming Laptop</h5>
-                                    <div class="product-rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <span class="text-muted ms-1">(4.0)</span>
-                                    </div>
-                                    <div class="product-price">$1,299.99</div>
-                                    <button class="btn btn-add-cart"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product 4 -->
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="card product-card">
-                                <div class="product-image">
-                                    <i class="fas fa-camera"></i>
-                                    <span class="product-badge">New</span>
-                                    <div class="product-actions">
-                                        <button class="btn-action wishlist-btn" title="Add to Wishlist">
-                                            <i class="far fa-heart"></i>
-                                        </button>
-                                        <button class="btn-action view-btn" title="Quick View">
-                                            <i class="far fa-eye"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="product-body">
-                                    <h5 class="product-title">Digital Camera 4K</h5>
-                                    <div class="product-rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span class="text-muted ms-1">(4.7)</span>
-                                    </div>
-                                    <div class="product-price">$499.99</div>
-                                    <button class="btn btn-add-cart"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product 5 -->
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="card product-card">
-                                <div class="product-image">
-                                    <i class="fas fa-mobile-alt"></i>
-                                    <span class="product-badge">Trending</span>
-                                    <div class="product-actions">
-                                        <button class="btn-action wishlist-btn" title="Add to Wishlist">
-                                            <i class="far fa-heart"></i>
-                                        </button>
-                                        <button class="btn-action view-btn" title="Quick View">
-                                            <i class="far fa-eye"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="product-body">
-                                    <h5 class="product-title">Smartphone Pro</h5>
-                                    <div class="product-rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span class="text-muted ms-1">(5.0)</span>
-                                    </div>
-                                    <div class="product-price">$899.99 <span class="text-muted text-decoration-line-through">$999.99</span></div>
-                                    <button class="btn btn-add-cart"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product 6 -->
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="card product-card">
-                                <div class="product-image">
-                                    <i class="fas fa-tablet-alt"></i>
-                                    <span class="product-badge sale">Sale</span>
-                                    <div class="product-actions">
-                                        <button class="btn-action wishlist-btn" title="Add to Wishlist">
-                                            <i class="far fa-heart"></i>
-                                        </button>
-                                        <button class="btn-action view-btn" title="Quick View">
-                                            <i class="far fa-eye"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="product-body">
-                                    <h5 class="product-title">Tablet Air</h5>
-                                    <div class="product-rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <span class="text-muted ms-1">(4.0)</span>
-                                    </div>
-                                    <div class="product-price">$599.99 <span class="text-muted text-decoration-line-through">$699.99</span></div>
-                                    <button class="btn btn-add-cart"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product 7 -->
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="card product-card">
-                                <div class="product-image">
-                                    <i class="fas fa-gamepad"></i>
-                                    <span class="product-badge">New</span>
-                                    <div class="product-actions">
-                                        <button class="btn-action wishlist-btn" title="Add to Wishlist">
-                                            <i class="far fa-heart"></i>
-                                        </button>
-                                        <button class="btn-action view-btn" title="Quick View">
-                                            <i class="far fa-eye"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="product-body">
-                                    <h5 class="product-title">Gaming Console</h5>
-                                    <div class="product-rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span class="text-muted ms-1">(4.7)</span>
-                                    </div>
-                                    <div class="product-price">$399.99</div>
-                                    <button class="btn btn-add-cart"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product 8 -->
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="card product-card">
-                                <div class="product-image">
-                                    <i class="fas fa-headphones"></i>
-                                    <span class="product-badge">Hot</span>
-                                    <div class="product-actions">
-                                        <button class="btn-action wishlist-btn" title="Add to Wishlist">
-                                            <i class="far fa-heart"></i>
-                                        </button>
-                                        <button class="btn-action view-btn" title="Quick View">
-                                            <i class="far fa-eye"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="product-body">
-                                    <h5 class="product-title">Noise Cancelling Headphones</h5>
-                                    <div class="product-rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span class="text-muted ms-1">(5.0)</span>
-                                    </div>
-                                    <div class="product-price">$299.99</div>
-                                    <button class="btn btn-add-cart"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+                     
                     </div>
 
                     <!-- Pagination -->
@@ -592,6 +363,16 @@
     background: #6366f1;
     color: white;
     transform: scale(1.1);
+}
+.btn-view-details{
+     width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    background: #6366f1;
+    border: none;
+    color: white;
+    transition: background 0.3s;
 }
 
 .product-body {

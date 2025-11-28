@@ -21,31 +21,31 @@
                 <div class="col-lg-8">
                     <div class="contact-form-card p-4">
                         <h3 class="mb-4">Send us a Message</h3>
-                        <form id="contactForm">
+                        <form id="contactForm" METHOD="POST" action="{{ route('store') }}">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="name" class="form-label">Full Name *</label>
-                                        <input type="text" class="form-control form-control-lg" id="name" required placeholder="Enter your full name">
+                                        <label for="fullname" class="form-label">Full Name *</label>
+                                        <input type="text" class="form-control form-control-lg" id="fullname" name="fullname" required placeholder="Enter your full name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="email" class="form-label">Email Address *</label>
-                                        <input type="email" class="form-control form-control-lg" id="email" required placeholder="Enter your email">
+                                        <input type="email" class="form-control form-control-lg" id="email" name="email" required placeholder="Enter your email">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="subject" class="form-label">Subject *</label>
-                                        <input type="text" class="form-control form-control-lg" id="subject" required placeholder="Enter subject">
+                                        <input type="text" class="form-control form-control-lg" id="subject" name="subject" required placeholder="Enter subject">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="message" class="form-label">Message *</label>
-                                        <textarea class="form-control form-control-lg" id="message" rows="6" required placeholder="Enter your message"></textarea>
+                                        <textarea class="form-control form-control-lg" id="message" name="message" rows="6" required placeholder="Enter your message"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -277,28 +277,4 @@
 }
 </style>
 
-<script>
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    
-    // Simulate form submission
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
-    submitBtn.disabled = true;
-    
-    setTimeout(() => {
-        submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Message Sent!';
-        submitBtn.style.background = '#10b981';
-        
-        setTimeout(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            submitBtn.style.background = '';
-            this.reset();
-        }, 3000);
-    }, 2000);
-});
-</script>
 @endsection
