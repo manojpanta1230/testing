@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\FakeStoreController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,6 @@ use App\Http\Controllers\QuoteController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/quote', [QuoteController::class, 'random']);
+
+Route::get('/fakestore/products', [FakeStoreController::class, 'index']);
+Route::get('/fakestore/products/{id}', [FakeStoreController::class, 'getProduct']);

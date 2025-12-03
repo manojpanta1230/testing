@@ -456,7 +456,7 @@
             </a>
             
             <div class="menu-label">MANAGEMENT</div>
-            <a href="{{ route('show') }}" class="menu-item">
+            <a href="{{ route('products.index') }}" class="menu-item">
                 <i class="fas fa-box"></i>
                 <span>Products</span>
             </a>
@@ -464,7 +464,7 @@
                 <i class="fas fa-tags"></i>
                 <span>Categories</span>
             </a>
-            
+
             <a href="#" class="menu-item">
                 <i class="fas fa-users"></i>
                 <span>Customers</span>

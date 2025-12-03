@@ -201,7 +201,7 @@
                                     </div>
                                     <div class="product-price">${{ $product->price }} <span class="text-muted text-decoration-line-through">${{ $product->old_price }}</span></div>
                                    <div class="d-grid gap-2 mt-3">
-                                    <button class="btn btn-add-cart"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
+                                    <a class="btn btn-add-cart"  href="{{ route('cart') }}"><i class="fas fa-cart-plus me-2"></i>Add to Cart</a>
                                     <a class=" btn btn-view-details" href="{{ route('products.show', $product->id) }}" 
                                  
                                    title="View Details">View Details</a>
@@ -457,18 +457,7 @@ document.getElementById('clearFilters').addEventListener('click', function() {
 });
 
 // Add to cart animation
-document.querySelectorAll('.btn-add-cart').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const originalText = this.innerHTML;
-        this.innerHTML = '<i class="fas fa-check me-2"></i>Added!';
-        this.style.background = '#10b981';
-        
-        setTimeout(() => {
-            this.innerHTML = originalText;
-            this.style.background = '';
-        }, 2000);
-    });
-});
+
 
 // Wishlist functionality
 document.querySelectorAll('.wishlist-btn').forEach(btn => {
